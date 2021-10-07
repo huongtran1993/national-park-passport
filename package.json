@@ -1,0 +1,48 @@
+{
+  "name": "animal-recognition",
+  "version": "1.0.0",
+  "description": "Animal Recognition",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "",
+    "start:dev": "nodemon --watch server",
+    "build:dev": "webpack -w --config webpack.dev.js",
+    "build:prod": "webpack --config webpack.prod.js",
+    "start:prod": "node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huongtran1993/animal-recognition.git"
+  },
+  "author": "Huong Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huongtran1993/animal-recognition/issues"
+  },
+  "homepage": "https://github.com/huongtran1993/animal-recognition#readme",
+  "dependencies": {
+    "@tensorflow/tfjs": "^3.9.0",
+    "@tensorflow/tfjs-node": "^3.9.0",
+    "axios": "^0.21.4",
+    "babel-loader": "^8.2.2",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.52.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-react": "^7.14.5",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "brotli-webpack-plugin": "^1.1.0",
+    "compression-webpack-plugin": "^9.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
+    "nodemon": "^2.0.12",
+    "webpack-cli": "^4.8.0"
+  }
+}

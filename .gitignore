@@ -1,0 +1,7 @@
+node_modules
+
+client/dist/bundles/
+
+config.js
+
+.DS_Store

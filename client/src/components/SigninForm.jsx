@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
@@ -8,11 +8,15 @@ import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
+import signInWithEmail from '../auth.js';
+
 const SigninForm = () => {
-  const [values, setValues] = React.useState({
+  const [values, setValues] = useState({
+    email: '',
     password: '',
     showPassword: false,
   });
@@ -32,18 +36,24 @@ const SigninForm = () => {
     event.preventDefault();
   };
 
+  const signIn = (e) => {
+    e.preventDefault();
+
+    signInWithEmail(values.email, values.password)
+    .then((userCredential) => {
+      console.log('Signed in as ', userCredential.user);
+    })
+    .catch((error) => {
+      console.log(`Error signing in: ${error.code}: ${error.message}`)
+    });
+
+  };
+
   return (
-    <Box
-      component="form"
-      sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
+    <form onSubmit={signIn}>
       <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
         <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-        <TextField id="input-with-sx" label="Username" variant="standard" required/>
+        <TextField id="input-with-sx" label="Email" variant="standard" required onChange={handleChange('email')}/>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
       <VpnKeyIcon sx={{ color: 'action.active', mr: 1, my: 0.5, marginBottom: '15px' }} />
@@ -68,8 +78,11 @@ const SigninForm = () => {
             required
           />
         </FormControl>
+        <Button variant="contained" color="primary" type="submit">
+          Submit
+        </Button>
         </Box>
-    </Box>
+    </form>
   );
 }
 

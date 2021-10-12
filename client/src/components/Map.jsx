@@ -8,7 +8,7 @@ const Map = () => {
     console.log(event.target.dataset.name);
     const newConfig = Object.assign({}, customConfig);
     if (newConfig[state] === undefined) {
-      newConfig[state] = {fill: 'blue'}
+      newConfig[state] = {fill: 'blue'};
       setCustomConfig(newConfig);
     }
   };

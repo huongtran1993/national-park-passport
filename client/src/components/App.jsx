@@ -23,34 +23,42 @@ const App = () => {
       <div id='nav-bar'>
         <h2 >National Park Passport</h2>
         <Route
-        path = '/'
-        render = {({ location }) => (
-          <Fragment>
-          <Tabs
-            value={location.pathname}
-            onChange={handleChange}
-            textColor='secondary'
-            indicatorColor='secondary'
-            aria-label='secondary tabs example'
-            >
-            <Tab label='Home' value='/' component={Link} to={'/'}  />
-            <Tab label='My Passport' value='/signin' component={Link} to={'/signin'}/>
-          </Tabs>
-          <Switch>
-            <Route exact path='/'>
-              <Home />
-            </Route>
-            <Route path='/signin'>
-              <Signin />
-            </Route>
-          </Switch>
-          </Fragment>
+          path = '/'
+          render = {({ location }) => (
+            <Fragment>
+              <Tabs
+                value={location.pathname}
+                onChange={handleChange}
+                textColor='secondary'
+                indicatorColor='secondary'
+                aria-label='secondary tabs example'
+              >
+                <Tab label='Home' value='/' component={Link} to={'/'} />
+                <Tab label='Find a park' value='/parks' component={Link} to={'/parks'}/>
+                <Tab label='Plan your visit' value='/info' component={Link} to={'/info'}/>
+                <Tab label='Manage Passport' value='/signin' component={Link} to={'/signin'}/>
+              </Tabs>
+              <Switch>
+                <Route exact path='/'>
+                  <Home />
+                </Route>
+                <Route exact path='/parks'>
+                  <Home />
+                </Route>
+                <Route exact path='/info'>
+                  <Home />
+                </Route>
+                <Route path='/signin'>
+                  <Signin />
+                </Route>
+              </Switch>
+            </Fragment>
           )}
         />
       </div>
     </BrowserRouter>
-  )
-}
+  );
+};
 
 function Home() {
   return (

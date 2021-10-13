@@ -15,9 +15,11 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 const auth = getAuth(firebaseApp);
 
-const signInWithEmail = (email, password) => signInWithEmailAndPassword(auth, email, password);
+export const signInWithEmail = (email, password) => signInWithEmailAndPassword(auth, email, password);
 
-export default signInWithEmail;
+export const signUpWithEmail = (email, password) => createUserWithEmailAndPassword(auth, email, password);
+
+export default firebaseApp;
 
 // onAuthStateChanged(auth, (user) => {
 //   if (user) {
@@ -31,16 +33,6 @@ export default signInWithEmail;
 //   }
 // });
 
-// createUserWithEmailAndPassword(auth, email, password)
-//   .then((userCredential) => {
-//     const user = userCredential.user;
-//     console.log('Signed in as ', user);
-//   })
-//   .catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     console.log(`Error signing up: ${errorCode}: ${errorMessage}`)
-//   });
 
 
 

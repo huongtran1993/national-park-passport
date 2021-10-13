@@ -22,8 +22,8 @@ app.use(express.json());
 //   next();
 // })
 
-app.get('/', (req, res) => {
-  res.send('server is running');
+app.get('/*', (req, res) => {
+  res.redirect('/');
 });
 
 const port = 3000;

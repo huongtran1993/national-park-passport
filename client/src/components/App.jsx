@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import {
   BrowserRouter,
   Switch,
@@ -8,72 +8,62 @@ import {
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Box from '@mui/material/Box';
-import Map from './Map';
+import Button from '@mui/material/Button';
 import SigninForm from './SigninForm';
+import SignupForm from './SignupForm';
+import Map from './Map';
+import Account from './Account';
+
 
 const App = () => {
-  const [value, setValue] = React.useState('home');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleLogIn = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogOut = () => {
+    setIsLoggedIn(false);
   };
 
   return (
-    <BrowserRouter>
-      <div id='nav-bar'>
-        <h2 >National Park Passport</h2>
-        <Route
-          path = '/'
-          render = {({ location }) => (
-            <Fragment>
-              <Tabs
-                value={location.pathname}
-                onChange={handleChange}
-                textColor='secondary'
-                indicatorColor='secondary'
-                aria-label='secondary tabs example'
-              >
-                <Tab label='Home' value='/' component={Link} to={'/'} />
-                <Tab label='Find a park' value='/parks' component={Link} to={'/parks'}/>
-                <Tab label='Plan your visit' value='/info' component={Link} to={'/info'}/>
-                <Tab label='Manage Passport' value='/signin' component={Link} to={'/signin'}/>
-              </Tabs>
-              <Switch>
-                <Route exact path='/'>
-                  <Home />
-                </Route>
-                <Route exact path='/parks'>
-                  <Home />
-                </Route>
-                <Route exact path='/info'>
-                  <Home />
-                </Route>
-                <Route path='/signin'>
-                  <Signin />
-                </Route>
-              </Switch>
-            </Fragment>
-          )}
-        />
-      </div>
-    </BrowserRouter>
+    <div>
+      <BrowserRouter>
+        <Button
+          style={{ position: 'fixed', top: '2%', left: '90%'}}
+          variant='contained'
+          color='primary'
+          type='button'
+          component={Link}
+          to={'/signin'}
+        >
+          Sign In
+        </Button>
+        <Route exact path='/'>
+          <Landing handleLogIn={handleLogIn}/>
+        </Route>
+        <Route path='/signin'>
+          <SigninForm handleLogIn={handleLogIn}/>
+        </Route>
+        <Route path='/account'>
+          <Account />
+        </Route>
+      </BrowserRouter>
+    </div>
   );
 };
 
-function Home() {
+const Landing = (props) => {
   return (
     <div>
-      <Map />
+      <div>
+        <h1>US National Park Passport and Travel Guide</h1>
+        <h3>Ready to explore? Create an account to get started!</h3>
+      </div>
+      <SignupForm handleLogIn={props.handleLogIn}/>
     </div>
   );
-}
+};
 
-function Signin() {
-  return (
-    <div>
-      <SigninForm />
-    </div>
-  );
-}
 
 export default App;

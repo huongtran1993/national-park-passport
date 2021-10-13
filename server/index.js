@@ -1,4 +1,5 @@
 const express = require('express');
+const db = require('./db');
 // const cookieParser = require('cookie-parser');
 // const csrf = require('csurf');
 
@@ -31,6 +32,3 @@ const port = 3000;
 app.listen(port, () => {
   console.log(`Successfully running on port ${port}`);
 });
-
-module.exports.app = app;
-

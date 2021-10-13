@@ -15,7 +15,6 @@ import SigninForm from './SigninForm';
 import SignupForm from './SignupForm';
 import Passport from './Passport';
 import Search from './Search';
-import Plan from './Plan';
 
 const Account = () => {
   const [value, setValue] = useState('account');
@@ -46,7 +45,6 @@ const Account = () => {
               >
                 <Tab label='My Passport' value='/account' component={Link} to={'/account'}/>
                 <Tab label='Find a park' value='/account/search' component={Link} to={'/account/search'}/>
-                <Tab label='Plan your visit' value='/account/plan' component={Link} to={'/account/plan'}/>
               </Tabs>
               <Button
                 style={{ position: 'fixed', top: '2%', left: '90%'}}
@@ -63,9 +61,6 @@ const Account = () => {
                 </Route>
                 <Route path='/account/search'>
                   <Search />
-                </Route>
-                <Route path='/account/plan'>
-                  <Plan />
                 </Route>
               </Switch>
             </Fragment>

@@ -49,8 +49,8 @@ const SigninForm = (props) => {
         password: '',
         showPassword: false
       });
-      props.handleLogIn();
-      console.log('Signed in as ', userCredential.user);
+      props.handleLogIn(userCredential.user.email);
+      console.log('Signed in as ', userCredential.user.email);
       history.push('/account');
     })
     .catch((error) => {

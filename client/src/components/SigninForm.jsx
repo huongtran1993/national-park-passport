@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import AccountCircle from '@mui/icons-material/AccountCircle';
@@ -47,8 +47,8 @@ const SigninForm = (props) => {
         password: '',
         showPassword: false
       });
-      props.handleLogIn();
-      console.log('Signed in as ', userCredential.user);
+      props.handleLogIn(userCredential.user.email);
+      console.log('Signed in as ', userCredential.user.email);
       history.push('/account');
     })
     .catch((error) => {

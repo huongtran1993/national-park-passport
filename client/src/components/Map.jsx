@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import USAMap from 'react-usa-map';
 
-const Map = () => (
+const Map = (props) => (
   <div id='map'>
-    <USAMap onClick={mapHandler} customize={props.customConfig} />
+    <USAMap customize={props.customConfig} />
   </div>
 );
 

@@ -28,6 +28,10 @@ app.get('/signin', (req, res) => {
   res.redirect('/');
 });
 
+app.get('/account', (req, res) => {
+  res.redirect('/');
+});
+
 app.get('/account/*', (req, res) => {
   res.redirect('/');
 });

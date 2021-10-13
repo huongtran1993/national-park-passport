@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 import {
   BrowserRouter,
   Switch,
@@ -14,15 +14,20 @@ import SignupForm from './SignupForm';
 import Map from './Map';
 import Account from './Account';
 import Search from './Search';
+import { GlobalContext } from './GlobalContext';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleLogIn = () => {
+  const { value, setValue } = useContext(GlobalContext);
+
+  const handleLogIn = (email) => {
+    setValue(email);
     setIsLoggedIn(true);
   };
 
   const handleLogOut = () => {
+    setValue('');
     setIsLoggedIn(false);
   };
 

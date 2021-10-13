@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import ParkList from './ParkList';
+import Button from '@mui/material/Button';
 
 const Search = () => {
   const [stateUS, setStateUS] = useState('');
@@ -18,12 +19,17 @@ const Search = () => {
     }
   }
 
-  useEffect(() => getParkList(),[activity]);
-
-  useEffect(() => {
-    const parkCodes = parkCodeList.filter(object => object.states === stateUS);
-    setParkCodeList(parkCodes);
-  },[stateUS]);
+  const handleSearch = () => {
+    if (stateUS === '' && activity === '') {
+      alert('Please select a state and an activity');
+    } else if (stateUS === '') {
+      alert('Please select a state');
+    } else if (activity === '') {
+      alert('Please select an activity');
+    } else {
+      getParkList();
+    }
+  };
 
   const getParkList = () => {
     const params = {
@@ -32,15 +38,12 @@ const Search = () => {
     };
     axios.get('https://developer.nps.gov/api/v1/activities/parks', { params })
       .then(response => {
-        let data = response.data.data[0].parks;
-        console.log(data);
-        if (stateUS.length === 2) {
-          data = data.filter(object => object.states === stateUS);
-        }
-        const parkCodes = data.map(object => {
-          const states = object.states;
+        const rawData = response.data.data[0].parks;
+        const filteredData = rawData.filter(object => object.states === stateUS);
+        const parkCodes = filteredData.map(object => {
           const parkCode = object.parkCode;
-          return {states, parkCode};
+          const fullName = object.fullName;
+          return { parkCode, fullName }
         });
         setParkCodeList(parkCodes);
       })
@@ -51,53 +54,59 @@ const Search = () => {
 
     return (
       <div className='container'>
-      <Autocomplete
-        id='activity-select'
-        sx={{ width: 300 }}
-        options={activities}
-        autoHighlight
-        getOptionLabel={(option) => option}
-        onChange={handleChange}
-        renderOption={(props, option) => (
-          <Box component='li' sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-            {option}
-          </Box>
-        )}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label='Choose an activity'
-            inputProps={{
-              ...params.inputProps,
-              autoComplete: 'new-password', // disable autocomplete and autofill
-            }}
-            required
+        <div className='flexboxrow'>
+          <Autocomplete
+            id='state-select'
+            sx={{ width: 300, mr: '1em' }}
+            options={states}
+            autoHighlight
+            getOptionLabel={(option) => option}
+            onChange={handleChange}
+            renderOption={(props, option) => (
+              <Box component='li' sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+                {option}
+              </Box>
+            )}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label='Choose a state'
+                inputProps={{
+                  ...params.inputProps,
+                  autoComplete: 'new-password', // disable autocomplete and autofill
+                }}
+                required
+              />
+            )}
           />
-        )}
-      />
-      <Autocomplete
-        id='state-select'
-        sx={{ width: 300 }}
-        options={states}
-        autoHighlight
-        getOptionLabel={(option) => option}
-        onChange={handleChange}
-        renderOption={(props, option) => (
-          <Box component='li' sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-            {option}
-          </Box>
-        )}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label='Choose a state'
-            inputProps={{
-              ...params.inputProps,
-              autoComplete: 'new-password', // disable autocomplete and autofill
-            }}
+          <Autocomplete
+            id='activity-select'
+            sx={{ width: 300, mr: '1em' }}
+            options={activities}
+            autoHighlight
+            getOptionLabel={(option) => option}
+            onChange={handleChange}
+            renderOption={(props, option) => (
+              <Box component='li' sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+                {option}
+              </Box>
+            )}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label='Choose an activity'
+                inputProps={{
+                  ...params.inputProps,
+                  autoComplete: 'new-password', // disable autocomplete and autofill
+                }}
+                required
+              />
+            )}
           />
-        )}
-      />
+          <Button variant='contained' color='primary' type='button' onClick={handleSearch}>
+            Search
+          </Button>
+        </div>
       <ParkList parkCodeList={parkCodeList} />
     </div>
   );

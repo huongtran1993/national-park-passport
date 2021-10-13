@@ -43,9 +43,20 @@ path:hover {
 .container {
   margin: 3em;
 }
-
+.flexboxrow {
+  display: flex;
+  justify-content: center;
+}
 .flexbox {
   display: flex;
   justify-content: center;
   flex-direction: column;
+}
+.MuiImageListItemBar-title {
+  font-weight: bold;
+  text-align: center;
+}
+.park-list-img:hover {
+  border-radius: 2%;
+  box-shadow: 0px 0px 15px black;
 }

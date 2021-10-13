@@ -13,7 +13,7 @@ import SigninForm from './SigninForm';
 import SignupForm from './SignupForm';
 import Map from './Map';
 import Account from './Account';
-
+import Search from './Search';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -40,6 +40,7 @@ const App = () => {
           Sign In
         </Button>
         <Route exact path='/'>
+          {/* <Search /> */}
           <Landing handleLogIn={handleLogIn}/>
         </Route>
         <Route path='/signin'>

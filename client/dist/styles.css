@@ -1,3 +1,7 @@
+body {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: rgba(179, 214, 234, 0.5);
+}
 path {
   pointer-events: all;
 }
@@ -32,6 +36,7 @@ path:hover {
   width: fit-content;
   margin: 3em auto;
   padding: 0 1em;
+  background-color: rgba(245, 245, 245, 0.5);
 }
 
 .label {

@@ -77,6 +77,9 @@ const SigninForm = (props) => {
                 }
                 required
               />
+              <FormHelperText id="component-helper-text">
+                For authentication, you won't be emailed
+              </FormHelperText>
             </FormControl>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'flex-end', mr: '1em' }}>
@@ -102,11 +105,11 @@ const SigninForm = (props) => {
                 required
               />
               <FormHelperText id="component-helper-text">
-                Password should be at least 6 characters
+                Password must be at least 6 characters
               </FormHelperText>
             </FormControl>
           </Box>
-          <Button variant='contained' color='primary' type='submit'>
+          <Button variant='contained' color='warning' type='submit'>
             Sign Up - It's Free!
           </Button>
         </Box>

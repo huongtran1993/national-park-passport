@@ -90,6 +90,7 @@ const ParkList = (props) => {
                 alt={item.title}
                 loading="lazy"
                 onClick={handleOpen}
+                data-code={item.parkCode}
                 className='park-list-img'
               />
               <ImageListItemBar

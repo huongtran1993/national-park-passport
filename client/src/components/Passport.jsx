@@ -111,7 +111,7 @@ const Passport = (props) => {
         </div>
       </div>
       <div>
-        <h1>STAMP COLLECTIONS</h1>
+        <h1>STAMP COLLECTION</h1>
         <div style={{ display: 'flex', flexWrap: 'wrap', padding: '3em 5em', maxHeight: '1000', overflow: 'hidden', overflowY: 'scroll' }}>
           {visited.length === 0 ? (
             <p>Find a park to visit and collect your first stamp</p>

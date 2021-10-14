@@ -117,7 +117,7 @@ const Passport = (props) => {
             <p>Find a park to visit and collect your first stamp</p>
           ) : (
             visited.map(item => (
-              <Card sx={{ width: 150, height: 250, marginRight: '2em' }}>
+              <Card sx={{ width: 150, height: 250, marginRight: '2em', marginBottom: '2em' }}>
                 <CardMedia
                   component="img"
                   height="180"

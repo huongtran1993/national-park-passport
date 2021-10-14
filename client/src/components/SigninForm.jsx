@@ -58,58 +58,61 @@ const SigninForm = (props) => {
   };
 
   return (
-    <div className='sign-in'>
-      <div className='label'>Sign-In</div>
-      <form onSubmit={signIn}>
-        <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', p: '0'}}>
-          <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-            <FormControl sx={{ m: 1, width: '20em' }} variant="standard" required>
-              <InputLabel htmlFor="email">Email</InputLabel>
-              <Input
-                id='email'
-                value={values.email}
-                onChange={handleChange('email')}
-                startAdornment={
-                  <InputAdornment position='start'>
-                    <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                  </InputAdornment>
-                }
-                required
-              />
-            </FormControl>
+    <div>
+      <div style={{height: '4em', width: '8em', backgroundColor: 'rgba(216,233,244)', position: 'fixed', top: '1%', left: '89%', zIndex: '3' }}></div>
+      <div className='sign-in'>
+        <div className='label'>Sign-In</div>
+        <form onSubmit={signIn}>
+          <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', p: '0'}}>
+            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <FormControl sx={{ m: 1, width: '20em' }} variant="standard" required>
+                <InputLabel htmlFor="email">Email</InputLabel>
+                <Input
+                  id='email'
+                  value={values.email}
+                  onChange={handleChange('email')}
+                  startAdornment={
+                    <InputAdornment position='start'>
+                      <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                    </InputAdornment>
+                  }
+                  required
+                  />
+              </FormControl>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'flex-end', mb: '2em' }}>
+              <FormControl sx={{ m: 1, width: '20em' }} variant="standard" required>
+                <InputLabel htmlFor='password'>Password</InputLabel>
+                <Input
+                  id='password'
+                  type={values.showPassword ? 'text' : 'password'}
+                  value={values.password}
+                  onChange={handleChange('password')}
+                  endAdornment={
+                    <InputAdornment position='end'>
+                      <IconButton
+                        aria-label='toggle password visibility'
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        >
+                        {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  required
+                  />
+              </FormControl>
+            </Box>
+            <Button variant='contained' color='primary' type='submit' onSubmit={signIn}>
+              Sign In
+            </Button>
           </Box>
-          <Box sx={{ display: 'flex', alignItems: 'flex-end', mb: '2em' }}>
-            <FormControl sx={{ m: 1, width: '20em' }} variant="standard" required>
-              <InputLabel htmlFor='password'>Password</InputLabel>
-              <Input
-                id='password'
-                type={values.showPassword ? 'text' : 'password'}
-                value={values.password}
-                onChange={handleChange('password')}
-                endAdornment={
-                  <InputAdornment position='end'>
-                    <IconButton
-                      aria-label='toggle password visibility'
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                    >
-                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                required
-              />
-            </FormControl>
-          </Box>
-          <Button variant='contained' color='primary' type='submit' onSubmit={signIn}>
-            Sign In
-          </Button>
-        </Box>
-      </form>
-      <div style={{ marginTop: '2em' }}>
-        Don't have an account?
-        &nbsp;
-        <Link to='/'>Sign Up</Link>
+        </form>
+        <div style={{ marginTop: '2em' }}>
+          Don't have an account?
+          &nbsp;
+          <Link to='/'>Sign Up</Link>
+        </div>
       </div>
     </div>
   );

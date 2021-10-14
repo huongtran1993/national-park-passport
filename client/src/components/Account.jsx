@@ -48,7 +48,7 @@ const Account = () => {
                 <Tab label='Find a park' value='/account/search' component={Link} to={'/account/search'}/>
               </Tabs>
               <Button
-                style={{ position: 'fixed', top: '2%', left: '90%', zIndex: '20'}}
+                style={{ position: 'fixed', top: '2%', left: '90%', zIndex: '20', height: '3em'}}
                 variant='contained'
                 color='primary'
                 type='button'

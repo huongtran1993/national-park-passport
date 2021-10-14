@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import Box from '@mui/material/Box';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
@@ -15,7 +16,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 
 import { signUpWithEmail } from '../auth.js';
 
-const SigninForm = (props) => {
+const SignupForm = (props) => {
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -41,7 +42,6 @@ const SigninForm = (props) => {
 
   const signUp = (e) => {
     e.preventDefault();
-    console.log('heelo');
     signUpWithEmail(values.email, values.password)
     .then((userCredential) => {
       setValues({
@@ -51,7 +51,13 @@ const SigninForm = (props) => {
       });
       props.handleLogIn(userCredential.user.email);
       console.log('Signed in as ', userCredential.user.email);
-      history.push('/account');
+      axios.post('/account', { email: values.email })
+        .then(() => {
+          history.push('/account');
+        })
+        .catch(err => {
+          console.log('Error sending post request to /account: ', err);
+        })
     })
     .catch((error) => {
       console.log(`Error signing up: ${error.code}: ${error.message}`)
@@ -118,4 +124,4 @@ const SigninForm = (props) => {
   );
 }
 
-export default SigninForm;
+export default SignupForm;

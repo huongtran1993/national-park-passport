@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('../db/index.js');
-const { getAll, addToVisit, deleteToVisit, addVisited } = require('../db/controllers/user');
+const { getAll, addToVisit, deleteToVisit, addVisited, createAccount } = require('../db/controllers/user');
 // const cookieParser = require('cookie-parser');
 // const csrf = require('csurf');
 
@@ -36,12 +36,24 @@ app.get('/account/*', (req, res) => {
   res.redirect('/');
 });
 
+app.post('/account', (req, res) => {
+  const email = req.body.email;
+  createAccount(email, (err, docs) => {
+    if (err) {
+      res.status(500).send(`Error creating an account in db ${err}`);
+    } else {
+      res.status(201).send(docs);
+    }
+  });
+});
+
 app.get('/stamp', (req, res) => {
   const email = req.query.email;
   getAll(email, (err, docs) => {
     if (err) {
       res.status(500).send(`Error from getting data from db ${err}`);
     } else {
+      console.log('THIS is docs: ', docs)
       res.status(200).send(docs);
     }
   });

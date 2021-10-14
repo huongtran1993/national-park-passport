@@ -1,5 +1,15 @@
 const Mvp = require('../models/user');
 
+exports.createAccount = (email, callback) => {
+  Mvp.create({email, visited: [], toVisit: []}, (err, docs) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, docs);
+    }
+  });
+};
+
 exports.getAll = (email, callback) => {
   Mvp.find({email}, (err, docs) => {
     if (err) {

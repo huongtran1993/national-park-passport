@@ -47,12 +47,12 @@ app.get('/stamp', (req, res) => {
   });
 });
 
-app.put('/stamp/visited', (req, res) => {
-  addVisited(req.body, (err) => {
+app.put('/stamp/visited/add', (req, res) => {
+  addVisited(req.body, (err, docs) => {
     if (err) {
       res.status(500).send(`Error from db ${err}`);
     } else {
-      res.status(204).send('Added');
+      res.status(204).send(docs);
     }
   });
 });

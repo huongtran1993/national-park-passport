@@ -12,6 +12,7 @@ const ParkInfo = (props) => {
   const [description, setDescription] = useState('');
   const [imgUrl, setImgUrl] = useState('');
   const [stampInfo, setStampInfo] = useState({});
+  const [stateUS, setStateUS] = useState('');
 
   const { value } = useContext(GlobalContext);
 
@@ -22,6 +23,7 @@ const ParkInfo = (props) => {
       email: value,
       park: fullName,
       parkCode: props.parkCode,
+      state: stateUS,
       img: imgUrl
     };
     axios.put('/stamp/tovisit/add', data)
@@ -29,7 +31,7 @@ const ParkInfo = (props) => {
         console.log('This is RES from PUT: ', response);
       })
       .catch(err => {
-        console.log('Error sending post request: ', err);
+        console.log('Error sending put request: ', err);
       });
   };
 
@@ -61,6 +63,7 @@ const ParkInfo = (props) => {
           info.url = image[0].url;
         }
         setStampInfo(info);
+        setStateUS(addrObj.stateCode);
       })
       .catch(err => {
         console.log('Error getting park info: ', err);

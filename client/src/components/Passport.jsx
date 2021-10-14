@@ -21,7 +21,7 @@ const Passport = (props) => {
   const [customConfig, setCustomConfig] = useState({});
   const [parkCount, setParkCount] = useState(0);
   const [stateCount, setStateCount] = useState(0);
-  const [level, setLevel] = useState('Traveler')
+  const [level, setLevel] = useState('Traveler');
 
   useEffect(() => getUserData(), []);
 
@@ -58,21 +58,43 @@ const Passport = (props) => {
       email: value,
       park: dataArr[0],
       parkCode: dataArr[1],
-      img: dataArr[2]
+      state: dataArr[2],
+      img: dataArr[3]
     };
     axios.put('/stamp/tovisit/remove', data)
       .then(response => {
         getUserData();
       })
       .catch(err => {
-        console.log('Error sending post request: ', err);
+        console.log('Error sending put request: ', err);
+      });
+  };
+
+  const handleCollectPark = (e) => {
+    const dataArr = e.target.value.split(',');
+    const data = {
+      email: value,
+      park: dataArr[0],
+      parkCode: dataArr[1],
+      state: dataArr[2],
+      img: dataArr[3]
+    };
+    axios.put('/stamp/visited/add', data)
+      .then(response => {
+        axios.put('/stamp/tovisit/remove', data)
+          .then(response => {
+            getUserData();
+          });
+      })
+      .catch(err => {
+        console.log('Error sending put request: ', err);
       });
   };
 
   return (
     <div style={{ padding: '2em 5em'}}>
       <div>
-        <h1>MAP DASHBOARD</h1>
+        <h1>NATIONAL PARK PASSPORT</h1>
         <div className='flexboxrow'>
           <Map customConfig={customConfig} />
           <Stack direction="column" spacing={2}>
@@ -136,7 +158,12 @@ const Passport = (props) => {
                   </Typography>
                 </CardContent>
                 <CardActions sx={{ pt: '0'}}>
-                  <Button value={[item.park, item.parkCode, item.img]} onClick={handleRemovePark} sx={{ fontSize: '0.7em', margin: 'auto' }}>Remove</Button>
+                  <Button value={[item.park, item.parkCode, item.state, item.img]} onClick={handleRemovePark} sx={{ fontSize: '0.5em', margin: 'auto' }}>
+                    Remove
+                  </Button>
+                  <Button value={[item.park, item.parkCode, item.state, item.img]} onClick={handleCollectPark} sx={{ fontSize: '0.5em', margin: 'auto' }}>
+                    Collect
+                  </Button>
                 </CardActions>
               </Card>
             ))

@@ -11,8 +11,9 @@ exports.getAll = (email, callback) => {
 };
 
 exports.addVisited = (body, callback) => {
-  const { email, visited } = body;
-  Mvp.create({email, visited}, (err, docs) => {
+  const { email, park, parkCode, state} = body;
+  const update = { park, parkCode, state};
+  Mvp.findOneAndUpdate({email}, {'$push': { 'visited': update } }, (err, docs) => {
     if (err) {
       callback(err, null);
     } else {
@@ -22,8 +23,8 @@ exports.addVisited = (body, callback) => {
 };
 
 exports.addToVisit = (body, callback) => {
-  const { email, park, parkCode, img } = body;
-  const update = { park, parkCode, img};
+  const { email, park, parkCode, state, img } = body;
+  const update = { park, parkCode, state, img};
   Mvp.findOneAndUpdate({email}, {'$push': { 'toVisit': update } }, (err, docs) => {
     if (err) {
       callback(err, null);
@@ -34,8 +35,8 @@ exports.addToVisit = (body, callback) => {
 };
 
 exports.deleteToVisit = (body, callback) => {
-  const { email, park, parkCode, img } = body;
-  const update = { park, parkCode, img};
+  const { email, park, parkCode, state, img } = body;
+  const update = { park, parkCode, state, img};
   Mvp.findOneAndUpdate({email}, {'$pull': { 'toVisit': update }}, (err, docs) => {
     if (err) {
       callback(err, null);

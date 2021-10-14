@@ -1,15 +1,12 @@
 const mongoose = require('mongoose');
 
 const mvpSchema = mongoose.Schema({
-  email: String,
-  visited: {
-    visitedPark: String,
-    visitedState: String
+  email: {
+    type: String,
+    required: true,
   },
-  toVisit: {
-    toVisitPark: String,
-    toVisitState: String,
-  }
+  visited: [mongoose.Schema.Types.Mixed],
+  toVisit: [mongoose.Schema.Types.Mixed]
 });
 
 const Mvp = mongoose.model('mvp', mvpSchema);

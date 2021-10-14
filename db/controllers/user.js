@@ -1,11 +1,11 @@
 const Mvp = require('../models/user');
 
-exports.getVisited = (email, callback) => {
-  Mvp.find({}, (err, docs) => {
+exports.getAll = (email, callback) => {
+  Mvp.find({email}, (err, docs) => {
     if (err) {
       callback(err, null);
     } else {
-      callback(null, docs);
+      callback(null, docs[0]);
     }
   });
 };
@@ -22,8 +22,9 @@ exports.addVisited = (body, callback) => {
 };
 
 exports.addToVisit = (body, callback) => {
-  const { email, toVisit } = body;
-  Mvp.create({email, toVisit}, (err, docs) => {
+  const { email, park, parkCode, img } = body;
+  const update = { park, parkCode, img};
+  Mvp.findOneAndUpdate({email}, {'$push': { 'toVisit': update } }, (err, docs) => {
     if (err) {
       callback(err, null);
     } else {
@@ -32,9 +33,10 @@ exports.addToVisit = (body, callback) => {
   });
 };
 
-exports.deleteToVisit = () => {
-  const { email, toVisitPark, toVisitState } = req.body;
-  Mvp.delete({email, toVisitPark, toVisittate}, (err, docs) => {
+exports.deleteToVisit = (body, callback) => {
+  const { email, park, parkCode, img } = body;
+  const update = { park, parkCode, img};
+  Mvp.findOneAndUpdate({email}, {'$pull': { 'toVisit': update }}, (err, docs) => {
     if (err) {
       callback(err, null);
     } else {

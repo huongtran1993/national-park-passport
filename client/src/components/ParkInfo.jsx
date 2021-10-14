@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { GlobalContext } from './GlobalContext';
 
 const ParkInfo = (props) => {
   const [address, setAddress] = useState('');
@@ -12,10 +13,24 @@ const ParkInfo = (props) => {
   const [imgUrl, setImgUrl] = useState('');
   const [stampInfo, setStampInfo] = useState({});
 
+  const { value } = useContext(GlobalContext);
+
   useEffect(() => getParkInfo(), []);
 
   const handleAddToVisit = () => {
-    console.log('TO DO');
+    const data = {
+      email: value,
+      park: fullName,
+      parkCode: props.parkCode,
+      img: imgUrl
+    };
+    axios.put('/stamp/tovisit/add', data)
+      .then(response => {
+        console.log('This is RES from PUT: ', response);
+      })
+      .catch(err => {
+        console.log('Error sending post request: ', err);
+      });
   };
 
   const getParkInfo = () => {
@@ -26,7 +41,6 @@ const ParkInfo = (props) => {
     axios.get('https://developer.nps.gov/api/v1/parks', { params })
       .then(response => {
         const parkData = response.data.data[0];
-        console.log('THIS IS PARK DATA :', parkData);
         const addrObj = parkData.addresses[0];
         const addrStr = `
         ${addrObj.line1}

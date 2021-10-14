@@ -19,8 +19,6 @@ const GlobalContextProvider = (props) => {
       }}
     >
       <App />
-      <Passport />
-      <Search />
     </GlobalContext.Provider>
   );
 };

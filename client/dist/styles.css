@@ -46,6 +46,7 @@ path:hover {
 .flexboxrow {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .flexbox {
   display: flex;

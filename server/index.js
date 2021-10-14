@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('../db/index.js');
-const mvp = require('../db/controllers/user.js');
+const { getAll, addToVisit, deleteToVisit, addVisited } = require('../db/controllers/user');
 // const cookieParser = require('cookie-parser');
 // const csrf = require('csurf');
 
@@ -37,8 +37,8 @@ app.get('/account/*', (req, res) => {
 });
 
 app.get('/stamp', (req, res) => {
-  const email = '';
-  mvp.getAll(email, (err) => {
+  const email = req.query.email;
+  getAll(email, (err, docs) => {
     if (err) {
       res.status(500).send(`Error from getting data from db ${err}`);
     } else {
@@ -47,22 +47,32 @@ app.get('/stamp', (req, res) => {
   });
 });
 
-app.post('/stamp', (req, res) => {
-  mvp.add(req.body, (err) => {
+app.put('/stamp/visited', (req, res) => {
+  addVisited(req.body, (err) => {
     if (err) {
-      res.status(500).send(`Error from posting to db ${err}`);
+      res.status(500).send(`Error from db ${err}`);
     } else {
-      res.status(201).send('RSVPed!');
+      res.status(204).send('Added');
     }
   });
 });
 
-app.post('/stamp', (req, res) => {
-  mvp.add(req.body, (err) => {
+app.put('/stamp/tovisit/add', (req, res) => {
+  addToVisit(req.body, (err, docs) => {
+    if (err) {
+      res.status(500).send(`Error from db ${err}`);
+    } else {
+      res.status(204).send(docs);
+    }
+  });
+});
+
+app.put('/stamp/tovisit/remove', (req, res) => {
+  deleteToVisit(req.body, (err, docs) => {
     if (err) {
       res.status(500).send(`Error from posting to db ${err}`);
     } else {
-      res.status(201).send('RSVPed!');
+      res.status(204).send(docs);
     }
   });
 });

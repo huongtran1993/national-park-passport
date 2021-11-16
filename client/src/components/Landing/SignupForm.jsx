@@ -14,7 +14,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import FormHelperText from '@mui/material/FormHelperText';
 
-import { signUpWithEmail } from '../auth.js';
+import { signUpWithEmail } from '../../auth.js';
 
 const SignupForm = (props) => {
   const [values, setValues] = useState({

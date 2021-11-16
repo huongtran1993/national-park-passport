@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-import { signInWithEmail } from '../auth.js';
+import { signInWithEmail } from '../../auth.js';
 
 const SigninForm = (props) => {
   const [values, setValues] = useState({

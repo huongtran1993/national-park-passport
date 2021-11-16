@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import USAMap from 'react-usa-map';
-import { GlobalContext } from './GlobalContext';
+
+import { GlobalContext } from '../../GlobalContext';
 
 const Map = (props) => {
   const history = useHistory();

@@ -10,10 +10,9 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Map from './Map';
-import SigninForm from './SigninForm';
-import SignupForm from './SignupForm';
-import Passport from './Passport';
+
+import Map from './Passport/Map';
+import Passport from './Passport/Passport';
 import Search from './Search';
 
 const Account = () => {

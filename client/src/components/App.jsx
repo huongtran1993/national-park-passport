@@ -9,12 +9,11 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import SigninForm from './SigninForm';
-import Map from './Map';
-import Account from './Account';
-import Search from './Search';
+
 import { GlobalContext } from './GlobalContext';
-import Landing from './Parallax';
+import Landing from './Landing/Landing';
+import SigninForm from './Landing/SigninForm';
+import Account from './Account/Account';
 
 const App = () => {
   const { value, setValue } = useContext(GlobalContext);
@@ -37,7 +36,6 @@ const App = () => {
           Sign In
         </Button>
         <Route exact path='/'>
-          {/* <Search /> */}
           <Landing handleLogIn={handleLogIn}/>
         </Route>
         <Route path='/signin'>

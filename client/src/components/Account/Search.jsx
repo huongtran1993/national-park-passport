@@ -3,9 +3,10 @@ import axios from 'axios';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import ParkList from './ParkList';
 import Button from '@mui/material/Button';
-import { GlobalContext } from './GlobalContext';
+
+import ParkList from './Park/ParkList';
+import { GlobalContext } from '../GlobalContext';
 
 const Search = () => {
   const { state } = useContext(GlobalContext);

@@ -1,7 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import Map from './Map';
-import { GlobalContext } from './GlobalContext';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Card from '@mui/material/Card';
@@ -12,6 +10,9 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import CardActions from '@mui/material/CardActions';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+
+import Map from './Map';
+import { GlobalContext } from '../../GlobalContext';
 
 const Passport = (props) => {
   const { value } = useContext(GlobalContext);

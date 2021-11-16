@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import App from './App';
-import Passport from './Passport';
-import Search from './Search';
 
 export const GlobalContext = React.createContext({
   value: '',

@@ -15,7 +15,7 @@
   <ol>
     <li><a href="#about">About</a></li>
     <li>
-      <a href="#setup">Setup</a>
+      <a href="#getting started">Setup</a>
       <ul>
         <li><a href="#installation">Installation</a></li>
       </ul>

@@ -11,8 +11,8 @@ import Tabs from '@mui/material/Tabs';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
-import Map from './Passport/Map';
-import Passport from './Passport/Passport';
+import Map from './Map';
+import Passport from './Passport';
 import Search from './Search';
 
 const Account = () => {

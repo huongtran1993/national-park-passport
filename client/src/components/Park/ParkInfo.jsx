@@ -3,7 +3,7 @@ import axios from 'axios';
 import Button from '@mui/material/Button';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
-import { GlobalContext } from '../../GlobalContext';
+import { GlobalContext } from '../GlobalContext';
 import ToDoInfo from './ToDoInfo';
 import AlertInfo from './AlertInfo';
 

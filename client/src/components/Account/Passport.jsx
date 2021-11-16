@@ -12,7 +12,7 @@ import CardActions from '@mui/material/CardActions';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import Map from './Map';
-import { GlobalContext } from '../../GlobalContext';
+import { GlobalContext } from '../GlobalContext';
 
 const Passport = (props) => {
   const { value } = useContext(GlobalContext);

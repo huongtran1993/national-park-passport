@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
 
-import ParkList from './Park/ParkList';
+import ParkList from '..//Park/ParkList';
 import { GlobalContext } from '../GlobalContext';
 
 const Search = () => {

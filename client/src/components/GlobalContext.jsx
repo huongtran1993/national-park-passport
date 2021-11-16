@@ -5,17 +5,22 @@ import Search from './Search';
 
 export const GlobalContext = React.createContext({
   value: '',
-  setValue: () => {}
+  setValue: () => {},
+  state: '',
+  setSelectedState: () => {}
 });
 
 const GlobalContextProvider = (props) => {
   const [value, setValue] = useState('');
+  const [state, setSelectedState] = useState('');
 
   return (
     <GlobalContext.Provider
       value={{
         value,
         setValue,
+        state,
+        setSelectedState,
       }}
     >
       <App />

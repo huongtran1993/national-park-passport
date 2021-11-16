@@ -32,7 +32,6 @@ const Passport = (props) => {
     axios.get('/stamp', { params })
       .then(response => {
         const data = response.data;
-        console.log('THIS IS data:', data);
         const states = data.visited.map(item => item.state);
         const stateSet = new Set(states);
         const config = {};

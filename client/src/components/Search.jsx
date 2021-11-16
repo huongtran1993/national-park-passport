@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import ParkList from './ParkList';
 import Button from '@mui/material/Button';
+import { GlobalContext } from './GlobalContext';
 
 const Search = () => {
-  const [stateUS, setStateUS] = useState('');
+  const { state } = useContext(GlobalContext);
+
+  const [stateUS, setStateUS] = useState(state);
   const [activity, setActivity] = useState('');
   const [parkCodeList, setParkCodeList] = useState([]);
 
@@ -58,6 +61,7 @@ const Search = () => {
           <Autocomplete
             id='state-select'
             sx={{ width: 300, mr: '1em' }}
+            value={state}
             options={states}
             autoHighlight
             getOptionLabel={(option) => option}
